@@ -1,0 +1,25 @@
+/* colors: 
+RGB
+outer space: rgba(74, 74, 72, 1);
+light gray: rgba(212, 209, 203, 1);
+cinereous: rgba(146, 131, 114, 1);
+dark vanilla: rgba(203, 182, 169, 1);
+rifle green: rgba(78, 75, 63, 1);
+
+*/
+
+/* ---------------global----------------- */
+body {
+background: rgba(78, 75, 63, .6);
+}
+.container {
+    background: radial-gradient(circle, rgba(74, 74, 72, 0), rgba(74, 74, 72, .8)), url("../images/sarah-ehlers-560509-unsplash.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+}
+
+
+/* ---------------header & footer----------------- */
+
+
+/* ---------------main----------------- */
