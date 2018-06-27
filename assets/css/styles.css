@@ -11,13 +11,21 @@ rifle green: rgba(78, 75, 63, 1);
 /* ---------------global----------------- */
 body {
 background: rgba(78, 75, 63, .6);
+font-family: 'IM Fell English SC', serif;
+font-family: 'Alegreya', serif;
+
 }
 .container {
     background: radial-gradient(circle, rgba(74, 74, 72, 0), rgba(74, 74, 72, .8)), url("../images/sarah-ehlers-560509-unsplash.jpg");
     background-size: cover;
-    background-repeat: repeat-y;
+    min-height: 900px;
 }
+h1, h2 {
+    font-family: 'IM Fell English SC', serif;
+    /* font-family: 'Alegreya SC', serif; */
 
+
+}
 
 /* ---------------header & footer----------------- */
 

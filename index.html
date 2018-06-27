@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Train Scheduler</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+SC|IM+Fell+English+SC" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <!-- FireBase script -->
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css" />
     <script src="assets/javascript/train.js"></script>
 </head>
@@ -17,23 +20,63 @@
 <body>
     <div class="container">
         <header class="row">
-            <div class="col-lg-8">
-                <h1 class="display-1">Hogwart's Express</h1>
+            <div class="col-lg-8 col-xl-6">
+                <h1 class="text-center">Hogwarts Express</h1>
+                <p class="text-center" id="pageSubheading">Best do it at a bit of a run if you're nervous</p>
             </div>
         </header>
         <section class="row">
-            <div class="col-lg-8">
-                <!-- times table here -->
+            <div class="col-lg-8 col-xl-6 table-responsive">
+                <h2>Current Schedule</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Form of Transportation</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency (min)</th>
+                            <th scope="col">Next Arrival</th>
+                            <th scope="col">Minutes Away</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+
+                    </tbody>
+                </table>
             </div>
         </section>
         <section class="row">
-            <div class="col-lg-8">
-                <!-- place to enter more transpo -->
+            <div class="col-lg-8 col-xl-6">
+                <h2>Add Transportation</h2>
+                <form>
+                    <div class="form-group">
+                        <!-- Some rode broomsticks (a difficult feat when carrying trunks and pets); others commandeered enchanted carts and, later, carriages; some attempted to Apparate (often with disastrous effects, as the castle and grounds have always been protected with Anti-Apparition Charms), others rode a variety of magical creatures. Portkeys, Floo powder, flying car, -->
+                        <label for="form-of-transpo">Form of Transportation</label>
+                        <input type="text" class="form-control" id="form-of-transpo">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <select class="form-control" id="destination">
+                            <option>Hogsmeade</option>
+                            <option>The Whomping Willow</option>
+                            <option>Hogwarts proper</option>
+                            <option>The Forbidden Forest</option>
+                            <option>The Great Lake</option>
+                            <option>Vanishing Cabinet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="first-train">First Train (HH:mm - Defense Against the Dark Arts Time)</label>
+                        <input type="text" class="form-control" id="first-train">
+                    </div>
+                    <div class="form-group">
+                        <label for="frequency">Frequency (min)</label>
+                        <input type="text" class="form-control" id="frequency">
+                    </div>
+                    <button id="add-new-transpo-btn" class="btn btn-primary" type="submit">Add New</button>
+                    <button id="empty-schedule-btn" class="btn btn-danger" type="submit">Empty Schedule</button>
+                </form>
             </div>
         </section>
-
-
-
 
     </div>
 
