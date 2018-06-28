@@ -11,7 +11,6 @@ rifle green: rgba(78, 75, 63, 1);
 /* ---------------global----------------- */
 body {
 background: rgba(78, 75, 63, .6);
-font-family: 'IM Fell English SC', serif;
 font-family: 'Alegreya', serif;
 
 }
@@ -22,9 +21,6 @@ font-family: 'Alegreya', serif;
 }
 h1, h2 {
     font-family: 'IM Fell English SC', serif;
-    /* font-family: 'Alegreya SC', serif; */
-
-
 }
 
 /* ---------------header & footer----------------- */
