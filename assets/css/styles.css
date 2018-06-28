@@ -12,18 +12,80 @@ rifle green: rgba(78, 75, 63, 1);
 body {
 background: rgba(78, 75, 63, .6);
 font-family: 'Alegreya', serif;
+color: rgba(212, 209, 203, 1);
 
 }
-.container {
-    background: radial-gradient(circle, rgba(74, 74, 72, 0), rgba(74, 74, 72, .8)), url("../images/sarah-ehlers-560509-unsplash.jpg");
-    background-size: cover;
-    min-height: 900px;
+h1 {
+    font-size: 3rem;
+    font-weight: 900;
 }
 h1, h2 {
     font-family: 'IM Fell English SC', serif;
+    color: #222221;
 }
 
 /* ---------------header & footer----------------- */
 
-
 /* ---------------main----------------- */
+.container {
+    background: radial-gradient(circle, rgba(74, 74, 72, 0), rgba(74, 74, 72, .8)), url("../images/sarah-ehlers-560509-unsplash.jpg");
+    background-size: cover;
+    background-position:center bottom;
+    min-height: 900px;
+}
+#pageSubheading {
+    font-size: 1.25rem;
+    color: #222221;
+}
+.card {
+    background: none;
+    border: none;
+}
+
+#how-it-works, #current-schedule-section, #add-rideshare-section {
+    padding: 1rem;
+    margin: 1rem;
+    background: linear-gradient(rgba(146, 131, 114, .75), rgba(78, 75, 63, .75));
+    border-radius: 10px;
+    box-shadow:10px 10px 40px 1px rgba(74, 74, 72, .75);
+}
+.badge-secondary {
+    background: rgba(90,109,138, .8);
+    font-size: 90%;
+    font-weight: 500;
+}
+#how-it-works-btn {
+    background-color: rgba(90,109,138, .7);
+}
+#how-it-works-btn-text {
+    color: rgba(212, 209, 203, 1);
+}
+.btn-primary {
+    color: rgba(212, 209, 203, 1);
+    background-color: rgba(90,109,138, .8);
+    border-color: rgba(90,109,138, .8);
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: rgba(212, 209, 203, 1);
+    background-color: rgba(90,109,138, 1);
+    border-color: rgba(90,109,138, 1);
+}
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(90,109,138,.5);
+}
+.btn-primary:hover {
+    color: rgba(212, 209, 203, 1);
+    background-color: rgba(90,109,138, .5);
+    border-color: rgba(90,109,138, .5);
+}
+.btn-danger {
+    color: rgba(212, 209, 203, 1);
+    background-color: #db6974;
+    border-color: #db6974;
+}
+
+.btn-danger:hover {
+    color: rgba(212, 209, 203, 1);;
+    background-color: #aa5c64;
+    border-color: #aa5c64;
+}

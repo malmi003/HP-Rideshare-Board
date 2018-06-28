@@ -1,5 +1,5 @@
 /*
-
+add validation to submitted Rideshares
 
 */
 var config = {
@@ -14,19 +14,28 @@ firebase.initializeApp(config);
 
 let database = firebase.database();
 
-let initialTranspo = "Hogwarts Express * <span class='badge badge-secondary'>The only school sanctioned <br> route for ordinary students</span>",
-    initialDestination = "Hogsmeade Station",
-    initialFrequency = "8,640",
-
-    initialNextArrival = moment("9/1/2015 11:00", "M/D/YYY HH:mm"),
-    initialMinsAway = "not totally sure how to do this math",
-
-    transpo = "",
+let transpo = "",
     destination = "",
-    frequency = "",
     nextArrival = "",
-    minsAway = "";
+    minsAway = 0,
+    initialTranspo = "Hogwarts Express * <span class='badge badge-secondary'>The only school sanctioned <br> route for ordinary students</span>",
+    initialDestination = "Hogsmeade Station",
+    initialFrequency = "Several many",
+    frequency = initialFrequency,
+    initialMinsAway = moment("9/1/2018 11:00", "M/D/YYYY HH:mm").diff(moment(), "minutes")
+initialNextArrival = "1st of September 11:00 AM";
 
+function minutesAway(firstMoment) {
+    let timeDiff = moment().diff(firstMoment, "minutes");
+    let tRemainder = timeDiff % frequency;
+    let minsAwayVal = frequency - tRemainder;
+    return minsAwayVal;
+}
+function nextArrivalFunction(minsAwayVal) {
+    let nextArrivalVal = moment().add(minsAwayVal, "minutes").format("hh:mm A");
+    return nextArrivalVal;
+    // ---------------
+}
 
 $(document).ready(function () {
 
@@ -64,7 +73,8 @@ $(document).ready(function () {
                 transpoName: transpo,
                 destinationName: destination,
                 frequencyVal: frequency,
-                nextArrivalVal: nextArrival
+                nextArrivalVal: nextArrival,
+                minsAwayVal: minsAway
             })
         };
 
@@ -78,26 +88,24 @@ $(document).ready(function () {
         event.preventDefault();
 
 
-        let transpoName = $("#form-of-transpo").val();
-        let destinationName = $("#destination").val();
-        let frequencyVal = parseInt($("#frequency").val());
-        //some maths
-        let firstArrival = moment($("#first-arrival").val(), "HH:mm").subtract(1, "years");
-        let currentTime = moment();
-        let timeDiff = currentTime.diff(firstArrival, "minutes");
-        let tRemainder = timeDiff % frequencyVal;
-        let minsAwayVal = frequencyVal - tRemainder;
-
-        let nextArrivalVal = currentTime.add(minsAwayVal, "minutes").format("hh:mm A");
+        transpo = $("#form-of-transpo").val().trim();
+        destination = $("#destination").val().trim();
+        frequency = parseInt($("#frequency").val());
+        minsAway = minutesAway(moment($("#first-arrival").val().trim(), "HH:mm"));
+        nextArrival = nextArrivalFunction(minsAway);
 
 
         database.ref("HP Transpo").push({
-            transpoName: transpoName,
-            destinationName: destinationName,
-            frequencyVal: frequencyVal,
-            minsAwayVal: minsAwayVal,
-            nextArrivalVal: nextArrivalVal
+            transpoName: transpo,
+            destinationName: destination,
+            frequencyVal: frequency,
+            minsAwayVal: minsAway,
+            nextArrivalVal: nextArrival
         })
+
+        $("#form-of-transpo").val("");
+        $("#first-arrival").val("");
+        $("#frequency").val("");
 
     });
 

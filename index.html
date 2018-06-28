@@ -27,30 +27,27 @@
 
 <body>
     <div class="container">
-        <header class="row">
-            <div class="col-lg-8 col-xl-6">
-                <h1 class="text-center">Hogwarts Trip Planner</h1>
-                <p class="text-center" id="pageSubheading">Best do it at a bit of a run if you're nervous</p>
+        <header class="row pt-5">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h1>Hogwarts Trip Planner</h1>
+                <p id="pageSubheading" class="font-italic">Best do it at a bit of a run if you're nervous</p>
             </div>
         </header>
         <section class="row">
-            <div class="col-lg-8 col-xl-6 table-responsive">
+            <div class="col-lg-8 col-xl-6">
                 <p>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#how-it-works" aria-expanded="false"
-                        aria-controls="collapseExample">
-                        How it works
+                    <button id="how-it-works-btn" class="btn btn-primary btn-lg btn-block m-3" type="button" data-toggle="collapse" data-target="#how-it-works" aria-expanded="false"
+                        aria-controls="collapse">
+                        <h2 id="how-it-works-btn-text">How it works</h2>
                     </button>
                 </p>
-                <div class="collapse" id="how-it-works">
+                <div class="collapse m-3" id="how-it-works">
                     <div class="card card-body">
-                        <h2>How it works</h2>
                         <p>In a perfect world we would all take public transportation to Hogwarts. But for those of us running
                             chronically late or early, sometimes ride sharing offers the only practical option.</p>
                         <p>We offer a platform to match your schedule with transportation currently being provided by our members.
-                            Just show up at the right time and catch a lift or enter your Rideshare information below to
-                            offer it to others.</p>
-                        <p>At this time we're only servicing out of King's Station, but we hear you! Come back in 2019 for our
-                            expanded routes.
+                        Just show up at King's Cross at the right time and catch a lift. Or enter your Rideshare information below to help others along.</p>
+                        <p>At this time we're only servicing out of King's Cross, but we hear you! Come back soon for our expanded routes.
                         </p>
                     </div>
                 </div>
@@ -58,7 +55,7 @@
             </div>
         </section>
         <section class="row">
-            <div class="col-lg-8 col-xl-6 table-responsive">
+            <div class="col-lg-8 col-xl-6 table-responsive" id="current-schedule-section">
                 <h2>Current Schedule</h2>
                 <table class="table table-hover">
                     <thead>
@@ -77,8 +74,8 @@
             </div>
         </section>
         <section class="row">
-            <div class="col-lg-8 col-xl-6">
-                <h2>Add Rideshare</h2>
+            <div class="col-lg-8 col-xl-6" id="add-rideshare-section">
+                <h2>Add A Rideshare</h2>
                 <form>
                     <div class="form-group">
                         <!-- Some rode broomsticks (a difficult feat when carrying trunks and pets); others commandeered enchanted carts and, later, carriages; some attempted to Apparate (often with disastrous effects, as the castle and grounds have always been protected with Anti-Apparition Charms), others rode a variety of magical creatures. Portkeys, Floo powder, flying car, -->
@@ -105,16 +102,16 @@
                         <input type="text" class="form-control" id="frequency">
                     </div>
                     <button id="add-new-transpo-btn" class="btn btn-primary" type="submit">Add New</button>
-                    <button id="empty-schedule-btn" class="btn btn-danger" type="submit">Empty Schedule</button>
+                    <button id="empty-schedule-btn" class="btn btn-danger ml-5" type="submit">Empty Schedule</button>
                 </form>
             </div>
         </section>
         <section class="row">
-            <div class="col-lg-8 col-xl-6">
-                <p>* Not sure where to go from Hogsmeade? As is common knowledge, first years will take boats from Hogsmeade
-                    Station to Hogwarts and years two-seven will take "horseless" carriages. For those of you who missed
+            <div class="col-lg-8 col-xl-6 mt-5">
+                <p>* Not sure where to go from Hogsmeade? For students, first years will take boats from Hogsmeade
+                    Station to Hogwarts and years two through seven will take "horseless" carriages. For those of you who missed
                     the boat, check out these
-                    <a href="http://harrypotter.wikia.com/wiki/Hogsmeade#Passageways_to_Hogwarts">alternative routes</a>
+                    <a href="http://harrypotter.wikia.com/wiki/Hogsmeade#Passageways_to_Hogwarts target="_blank">alternative routes.</a>
                 </p>
             </div>
         </section>
