@@ -1,6 +1,7 @@
 /*
 add validation to submitted Rideshares
 
+add hp music to the background
 */
 var config = {
     apiKey: "AIzaSyDpx_ce6nfAL5lmBW6m4j6SSCKPktPxmXM",
@@ -87,11 +88,13 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-
         transpo = $("#form-of-transpo").val().trim();
         destination = $("#destination").val().trim();
         frequency = parseInt($("#frequency").val());
-        minsAway = minutesAway(moment($("#first-arrival").val().trim(), "HH:mm"));
+
+        //moment maths
+        let firstArrivalAdjusted = moment($("#first-arrival").val().trim(), "HH:mm").subtract(1, "years");
+        minsAway = minutesAway(firstArrivalAdjusted);
         nextArrival = nextArrivalFunction(minsAway);
 
 

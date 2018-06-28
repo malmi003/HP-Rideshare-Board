@@ -23,7 +23,12 @@ h1, h2 {
     font-family: 'IM Fell English SC', serif;
     color: #222221;
 }
-
+a {
+    color: rgba(146, 131, 114, 1);
+}
+a:hover {
+    color: rgba(146, 131, 114, .8);
+}
 /* ---------------header & footer----------------- */
 
 /* ---------------main----------------- */
