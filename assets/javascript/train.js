@@ -19,12 +19,14 @@ let transpo = "",
     destination = "",
     nextArrival = "",
     minsAway = 0,
+    firstArrivalAdjusted = "",
     initialTranspo = "Hogwarts Express * <span class='badge badge-secondary'>The only school sanctioned <br> route for ordinary students</span>",
     initialDestination = "Hogsmeade Station",
     initialFrequency = "Several many",
     frequency = initialFrequency,
+    initialFirstArrivalAdjusted = moment("9/1/2018 11:00", "M/D/YYYY HH:mm").diff(moment(), "minutes"),
     initialMinsAway = moment("9/1/2018 11:00", "M/D/YYYY HH:mm").diff(moment(), "minutes")
-initialNextArrival = "1st of September 11:00 AM";
+    initialNextArrival = "1st of September 11:00 AM";
 
 function minutesAway(firstMoment) {
     let timeDiff = moment().diff(firstMoment, "minutes");
@@ -38,13 +40,47 @@ function nextArrivalFunction(minsAwayVal) {
     // ---------------
 }
 
+//every minute can we update each snapshot.child("HP Transpo").forEach(function (item) {} to include a new minsAway/nextArrival?
+setInterval(function () {
+    database.ref().on("value", function (snapshot) {
+        if (snapshot.child("HP Transpo").exists()) {
+
+            $("#table-body").empty();
+            
+            snapshot.child("HP Transpo").forEach(function (item) {
+                transpo = item.val().transpoName;
+                destination = item.val().destinationName;
+                frequency = item.val().frequencyVal;
+                firstArrivalAdjusted = item.val().firstArrivalAdjustedVal;
+                minsAway = minutesAway(moment(firstArrivalAdjusted, "HH:mm").subtract(1, "years"));
+                nextArrival = nextArrivalFunction(minsAway);
+                // console.log(item.val())
+                
+
+                $("#table-body").append(`<tr>
+                <td>${transpo}</td>
+                <td>${destination}</td>
+                <td>${frequency}</td>
+                <td>${nextArrival}</td>
+                <td>${minsAway}</td>
+                </tr>`);
+
+
+
+                
+            })
+        }
+    }
+    )
+}, 5000);
+
 $(document).ready(function () {
 
     database.ref().on("value", function (snapshot) {
 
         if (snapshot.child("HP Transpo").exists()) {
 
-            $("#table-body").empty();
+            
 
             snapshot.child("HP Transpo").forEach(function (item) {
                 transpo = item.val().transpoName;
@@ -67,6 +103,7 @@ $(document).ready(function () {
             transpo = initialTranspo;
             destination = initialDestination;
             frequency = initialFrequency;
+            firstArrivalAdjusted = initialFirstArrivalAdjusted;
             nextArrival = initialNextArrival;
             minsAway = initialMinsAway;
 
@@ -74,6 +111,7 @@ $(document).ready(function () {
                 transpoName: transpo,
                 destinationName: destination,
                 frequencyVal: frequency,
+                firstArrivalAdjustedVal: firstArrivalAdjusted,
                 nextArrivalVal: nextArrival,
                 minsAwayVal: minsAway
             })
@@ -93,7 +131,7 @@ $(document).ready(function () {
         frequency = parseInt($("#frequency").val());
 
         //moment maths
-        let firstArrivalAdjusted = moment($("#first-arrival").val().trim(), "HH:mm").subtract(1, "years");
+        firstArrivalAdjusted = $("#first-arrival").val().trim();
         minsAway = minutesAway(firstArrivalAdjusted);
         nextArrival = nextArrivalFunction(minsAway);
 
@@ -102,6 +140,7 @@ $(document).ready(function () {
             transpoName: transpo,
             destinationName: destination,
             frequencyVal: frequency,
+            firstArrivalAdjustedVal: firstArrivalAdjusted,
             minsAwayVal: minsAway,
             nextArrivalVal: nextArrival
         })
