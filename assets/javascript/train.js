@@ -19,6 +19,7 @@ let transpo = "",
     destination = "",
     nextArrival = "",
     minsAway = 0,
+    itemIndex = 0,
     initialTranspo = "Hogwarts Express * <span class='badge badge-secondary'>The only school sanctioned <br> route for ordinary students</span>",
     initialDestination = "Hogsmeade Station",
     initialFrequency = "Several many",
@@ -52,6 +53,8 @@ $(document).ready(function () {
                 frequency = item.val().frequencyVal;
                 nextArrival = item.val().nextArrivalVal;
                 minsAway = item.val().minsAwayVal;
+                itemIndex = item.val().indexVal;
+                console.log(itemIndex)
 
                 $("#table-body").append(`<tr>
                 <td>${transpo}</td>
@@ -59,6 +62,7 @@ $(document).ready(function () {
                 <td>${frequency}</td>
                 <td>${nextArrival}</td>
                 <td>${minsAway}</td>
+                <td><button id="index-${itemIndex}" class="delete-btn btn btn-danger" type="submit">Remove</button></td>
                 </tr>`);
             })
 
@@ -69,13 +73,15 @@ $(document).ready(function () {
             frequency = initialFrequency;
             nextArrival = initialNextArrival;
             minsAway = initialMinsAway;
+            itemIndex = 0;
 
-            database.ref("HP Transpo").push({
+            database.ref("HP Transpo").child("index-" + itemIndex).set({
                 transpoName: transpo,
                 destinationName: destination,
                 frequencyVal: frequency,
                 nextArrivalVal: nextArrival,
-                minsAwayVal: minsAway
+                minsAwayVal: minsAway,
+                indexVal: itemIndex
             })
         };
 
@@ -98,12 +104,13 @@ $(document).ready(function () {
         nextArrival = nextArrivalFunction(minsAway);
 
 
-        database.ref("HP Transpo").push({
+        database.ref("HP Transpo").child("index-" + ++itemIndex).set({
             transpoName: transpo,
             destinationName: destination,
             frequencyVal: frequency,
             minsAwayVal: minsAway,
-            nextArrivalVal: nextArrival
+            nextArrivalVal: nextArrival,
+            indexVal: itemIndex
         })
 
         $("#form-of-transpo").val("");
@@ -111,6 +118,14 @@ $(document).ready(function () {
         $("#frequency").val("");
 
     });
+
+    $(document).on("click", ".delete-btn", function (event) {
+        event.preventDefault();
+
+        let dataIndex = $(this).attr("id");
+        database.ref("HP Transpo").child(dataIndex).remove();
+
+    })
 
     $("#empty-schedule-btn").on("click", function (event) {
         event.preventDefault();
