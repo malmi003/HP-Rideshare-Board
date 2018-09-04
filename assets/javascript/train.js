@@ -80,7 +80,6 @@ $(document).ready(function () {
 
         if (snapshot.child("HP Transpo").exists()) {
 
-            
 
             snapshot.child("HP Transpo").forEach(function (item) {
                 transpo = item.val().transpoName;
