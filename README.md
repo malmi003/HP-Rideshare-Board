@@ -7,6 +7,6 @@ This app was designed to mimic a ride sharing/scheduling app where board manager
 Front-end app written with HTML, CSS utilizing Bootstrap and Javascript. The data is persistent across browser windows thanks to Google's Firebase services.
 
 ## Demo
-Deployment through [Github Pages](https://malmi003.github.io/Train-Scheduler/)
+Deployment through [Github Pages](https://malmi003.github.io/HP-Rideshare-Board/)
 
 ![demo-pic](/assets/images/demo-pic.png)
